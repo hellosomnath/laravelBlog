@@ -21,6 +21,17 @@
 						</li>
 						<li><a href="{{ url('/') }}">Home</a></li>
 						<li><a href="{{ url('/blogs') }}">Blogs</a></li>
+						@if (auth()->user())
+						<li class="dropdown first">
+							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown">
+							Categories &nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i>
+							</a>
+							<ul class="dropdown-menu level1">
+								<li><a href="{{ url('/categories') }}">List</a></li>
+								<li><a href="{{ url('add-category') }}">Add a category</a></li>
+							</ul>
+						</li>
+						@endif
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">
 						@if (auth()->user())

@@ -84,6 +84,7 @@ pre {
 header .navbar-default .navbar-nav .dropdown .dropdown-menu.level1 li:hover a {
   padding: 10px 30px;
   color: #dcf836;
+  background-color: #0b1a2a;
 }
 
 .logout:hover a {
@@ -104,18 +105,18 @@ header .navbar-default .navbar-nav .dropdown .dropdown-menu.level1 li:hover a {
 
 .action-btn-edit {
   background-color: #4280bf;
-  color: #ffffff;
+  color: #ffffff !important;
   padding: 5px 15px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 600 !important;
   border: none;
 }
 
 .action-btn-delete:hover, .action-btn-edit:hover {
-  color: #000;
+  color: #000 !important;
 }
 
 .inline-form {

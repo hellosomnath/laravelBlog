@@ -3,51 +3,40 @@
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
 				 <a href="index-2.html"><img class="logo" src="{{ asset('assets/images/logo1.png') }}" alt="" style="max-height: 75px;"></a>
-				 <p>5th Avenue st, manhattan<br>
-				New York, NY 10001</p>
-				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
+				 <p>Kolkata, West Bengal</p>
 			</div>
 			<div class="flex-child-ft item2">
 				<h4>Resources</h4>
 				<ul>
-					<li><a href="#">About</a></li> 
-					<li><a href="#">Blockbuster</a></li>
-					<li><a href="#">Contact Us</a></li>
-					<li><a href="#">Forums</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Help Center</a></li>
+					<li><a href="{{ url('/') }}">Home</a></li>
+					<li><a href="{{ url('/blogs') }}">Blogs</a></li>
+					@if (auth()->user())
+					<li><a href="{{ url('/categories') }}">Categories</a></li>
+					@endif
 				</ul>
 			</div>
 			<div class="flex-child-ft item3">
-				<h4>Legal</h4>
-				<ul>
-					<li><a href="#">Terms of Use</a></li> 
-					<li><a href="#">Privacy Policy</a></li>	
-					<li><a href="#">Security</a></li>
-				</ul>
+				
 			</div>
 			<div class="flex-child-ft item4">
+				@if (auth()->user())
 				<h4>Account</h4>
 				<ul>
-					<li><a href="#">My Account</a></li> 
-					<li><a href="#">Watchlist</a></li>	
-					<li><a href="#">Collections</a></li>
-					<li><a href="#">User Guide</a></li>
+					<li><a href="{{ url('/user/my-blogs') }}">My blogs</a></li>
+					<li><a href="{{ url('/blogs/create') }}">Write a blog</a></li>
+					<li><a href="{{ url('user/profile') }}">Profile</a></li>
+					<li class="it-last logout"><a href="{{ url('/logout') }}">Logout</a></li>
 				</ul>
+				@endif
 			</div>
 			<div class="flex-child-ft item5">
-				<h4>Newsletter</h4>
-				<p>Subscribe to our newsletter system now <br> to get latest news from us.</p>
-				<form action="#">
-					<input type="text" placeholder="Enter your email...">
-				</form>
-				<a href="#" class="btn">Subscribe now <i class="ion-ios-arrow-forward"></i></a>
+				
 			</div>
 		</div>
 	</div>
 	<div class="ft-copyright">
 		<div class="ft-left">
-			
+			&copy; LaravelBlog, {{ date('Y') }}
 		</div>
 		<div class="backtotop">
 			<p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>
