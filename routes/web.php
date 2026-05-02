@@ -23,4 +23,6 @@ Route::post('signin', [AuthController::class, 'signin'])->middleware('guest');
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 //user
-Route::get('/user/my-blogs', [UserController::class, 'myBlogs']);
+Route::get('/user/my-blogs', [UserController::class, 'myBlogs'])->middleware('auth');
+Route::get('/user/profile', [UserController::class, 'profile'])->middleware('auth');
+Route::post('/user/profile/{user}', [UserController::class, 'updateProfile'])->middleware('auth');

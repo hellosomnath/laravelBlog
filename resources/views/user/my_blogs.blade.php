@@ -36,7 +36,7 @@
 						<form class="inline-form" method ="post" action="{{ url('blogs/'.$blog->id)}}">
 							@csrf
 							@method('DELETE')
-							<button type="submit" class="btn action-btn-delete"><span class="ion-ios-trash"></span> Delete</button>
+							<button type="submit" class="btn action-btn-delete" onclick="return confirm('are you sure, your want to delete this item?')"><span class="ion-ios-trash"></span> Delete</button>
 						</form>
 					</div>
 				</div>

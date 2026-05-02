@@ -27,6 +27,9 @@ class BlogController extends Controller
      */
     public function create()
     {
+        if(!auth()->user()) {
+            return redirect('/blogs');
+        }
         $categories = Category::all();
         return view('blogs.create', ['categories' => $categories]);
     }
@@ -89,7 +92,11 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return view('blogs.edit', ['blog' => $blog]);
+        if(!auth()->user()) {
+            return redirect('/blogs');
+        }
+        $categories = Category::all();
+        return view('blogs.edit', ['blog' => $blog, 'categories' => $categories]);
     }
 
     /**
@@ -97,7 +104,32 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $formFields = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'user_id' => 'required',
+            'author' => 'required',
+            'category_id' => 'required',
+            'published_on' => 'required',
+        ],
+        [
+            'category_id' => 'The category field is required.'
+        ]);
+
+        $formFields['published_on'] = $request->published_on ? date('Y-m-d', strtotime($request->published_on)) : date('Y-m-d');
+        $formFields['tags'] = $request->tags;
+        $formFields['is_published'] = $request->is_published;
+        if ($request->hasFile('feature_image')) {
+            if($blog->feature_image) {
+                unlink(public_path($blog->feature_image));
+            }
+            $formFields['feature_image'] = $request->file('feature_image')->store('uploads', 'feature_image');
+        }
+
+        $blog->update($formFields);
+        session()->flash('success', 'Blog updated successfully');
+
+        return redirect('user/my-blogs');
     }
 
     /**
@@ -105,6 +137,12 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        dd($blog);
+        if($blog->feature_image) {
+            unlink(public_path($blog->feature_image));
+        }
+
+        $blog->delete();
+        session()->flash('success', 'Blog deleted successfully');
+        return redirect('user/my-blogs');
     }
 }

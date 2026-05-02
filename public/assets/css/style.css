@@ -145,6 +145,24 @@ input.datepicker {
     display: block;
 }
 
+.reset-password h5 {
+    color: white;
+    margin-left: 15px;
+}
+
+.reset-password {
+    border: 1px dotted;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.text-warning {
+  color: lightcoral;
+  font-family: monospace;
+  margin-left: 10px;
+  float: right;
+}
+
 @media print {
   *,
   *:before,

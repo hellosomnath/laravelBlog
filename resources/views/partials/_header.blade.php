@@ -31,8 +31,7 @@
 								<ul class="dropdown-menu level1">
 									<li><a href="{{ url('/user/my-blogs') }}">My blogs</a></li>
 									<li><a href="{{ url('/blogs/create') }}">Write a blog</a></li>
-									<li><a href="landing.html">Profile</a></li>
-									<li><a href="404.html">Forgot Password</a></li>
+									<li><a href="{{ url('user/profile') }}">Profile</a></li>
 									<li class="it-last logout"><a href="{{ url('/logout') }}">Logout</a></li>
 								</ul>
 							</li> 

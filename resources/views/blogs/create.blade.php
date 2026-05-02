@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<label for="">Title*</label>
-									<input type="text" name="title" placeholder="Title" value={{ old('title') }}>
+									<input type="text" name="title" placeholder="Title" value="{{ old('title') }}">
 								</div>
 							</div>
 							<div class="row">
@@ -55,13 +55,13 @@
 							<div class="row">
 								<div class="col-md-12">
 									<label for="">Tags</label>
-									<input type="text" name="tags" placeholder="Tags" value={{ old('tags') }}>
+									<input type="text" name="tags" placeholder="Tags" value="{{ old('tags') }}">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<label for="">Published on*</label>
-									<input type="text" class="datepicker" name="published_on" placeholder="Published on" value={{ old('published_on') }}>
+									<input type="text" class="datepicker" name="published_on" placeholder="Published on" value="{{ old('published_on') }}">
 								</div>
 								<div class="col-md-6 top-search">
 									<label for="">Published</label>

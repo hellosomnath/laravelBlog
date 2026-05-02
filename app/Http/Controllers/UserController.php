@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,5 +23,49 @@ class UserController extends Controller
                                     'categories' => $categories,
                                     'latest_blog' => $latest_blog
                                 ]);
+    }
+
+    public function profile()
+    {
+        return view('user.profile');
+    }
+
+    public function updateProfile(Request $request, User $user)
+    {
+        // dd($request->all());
+        $formFields = $request->validate([
+            'username' => 'required',
+            'email' => [
+                        'required',
+                        'email',
+                        Rule::unique('users')->ignore($user->id),
+                       ],
+            'new_password' => ($request->new_password) ? [
+                            'required',
+                            'same:confirm_password',
+                            Password::min(6)->letters()->symbols()->numbers()
+                        ] : "",
+        ],
+        [
+            'username' => 'The name field is required.'
+        ]);
+        
+        $user->name = $request->username;
+        $user->email = $request->email;
+
+        $password = $request->current_password;
+        if($request->new_password) {
+            if (Hash::check($password, $user->password)) {
+                $user->password = Hash::make($request->new_password);
+
+                $user->save();
+                return redirect('/logout');
+            } else {
+                return back()->withErrors(['password' => 'Invalid credential']);
+            }
+        }
+
+        $user->save();
+        return redirect('/user/profile')->with('success', 'Profile updated');
     }
 }
