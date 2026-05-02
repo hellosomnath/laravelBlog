@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('tags', 100)->nullable();
             $table->date('published_on');
             $table->boolean('is_published')->default(1)->comment("0 = Not published, 1 = Published");
+            $table->mediumInteger('total_views')->default(0)->nullable();
             $table->timestamps();
         });
     }

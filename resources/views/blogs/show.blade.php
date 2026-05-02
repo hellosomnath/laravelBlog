@@ -35,6 +35,8 @@
 						<div class="right-it">
 							<h4>Category</h4>
 							<a href="{{ url('category/'.$blog->category_name)}}">{{ strtoupper($blog->category_name) }}</a>
+							&nbsp;|&nbsp;
+							<p style="margin: 0;">Views: {{ $blog->total_views }}</p>
 						</div>
 					</div>
 					<!-- comment items -->

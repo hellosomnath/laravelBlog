@@ -19,6 +19,7 @@ class Blog extends Model
         'category_id',
         'tags',
         'published_on',
+        'total_views',
         'is_published',
     ];
 }

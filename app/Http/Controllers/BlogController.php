@@ -69,6 +69,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
+        $blog->update(['total_views' => $blog->total_views+1]);
         $category = Category::query()->where('id', $blog->category_id)->first();
         $blog->category_name = $category->category_name;
         $categories = Category::withCount('blogs')->get();
