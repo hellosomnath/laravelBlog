@@ -13,13 +13,51 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        switch ($request->query('sort')) {
+            case 'sbpa':
+                $sortBy = 'published_on';
+                $sortType = 'asc';
+                break;
+
+            case 'sbpa':
+                $sortBy = 'published_on';
+                $sortType = 'desc';
+                break;
+
+            case 'sbvd':
+                $sortBy = 'total_views';
+                $sortType = 'desc';
+                break;
+
+            case 'sbva':
+                $sortBy = 'total_views';
+                $sortType = 'asc';
+                break;
+
+            case 'sbaa':
+                $sortBy = 'author';
+                $sortType = 'asc';
+                break;
+
+            case 'sbad':
+                $sortBy = 'author';
+                $sortType = 'desc';
+                break;
+            
+            default:
+                $sortBy = 'published_on';
+                $sortType = 'desc';
+                break;
+        }
+
         $categories = Category::withCount('blogs')->get();
 
-        $blogs = Blog::query()->where('is_published', 1)->orderBy('published_on', 'desc')->paginate(5);
+        $blogs = Blog::query()->where('is_published', 1)->orderBy($sortBy, $sortType)->paginate(5);
         $latest_blog = Blog::query()->orderBy('published_on', 'desc')->limit(3)->get();
-        return view('blogs.index', ['blogs' => $blogs,'categories' => $categories, 'latest_blog' => $latest_blog]);
+        $sort = $request->query('sort') ?? 'sbpd';
+        return view('blogs.index', ['blogs' => $blogs,'categories' => $categories, 'latest_blog' => $latest_blog, 'sort' => $sort]);
     }
 
     /**
@@ -78,11 +116,13 @@ class BlogController extends Controller
         $com_count = Comment::where(['parent_id'=> 0, 'blog_id' => $blog->id])->count();
 
         $latest_blog = Blog::query()->orderBy('published_on', 'desc')->limit(3)->get();
+        $popular_blogs = Blog::query()->orderBy('total_views', 'desc')->limit(3)->get();
         return view('blogs.show', 
             [
                 'blog' => $blog,
                 'categories' => $categories, 
                 'latest_blog' => $latest_blog, 
+                'popular_blogs' => $popular_blogs, 
                 'comments' => $comments, 
                 'total_comments' => $com_count
             ]);

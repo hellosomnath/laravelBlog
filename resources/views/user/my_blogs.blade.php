@@ -26,6 +26,7 @@
 					@endif
 					<div class="blog-it-infor">
 						<h3><a href="{{ url('/blogs/'. $blog->id) }}">{{ $blog->title }}</a></h3>
+						<span class="publish">{{ ($blog->is_published == 1) ? 'Published' : 'Not Published' }}</span>
 						<span class="time"><span class="ion-ios-calendar-outline"></span> {{date('d-m-Y', strtotime($blog->published_on))}}&nbsp;&nbsp;<span class="ion-ios-person"></span> {{$blog->author}}</span>
 						{!! strlen($blog->content) > 200 ? substr($blog->content, 0, 200) . "..." : substr($blog->content, 0, 200) !!}
 

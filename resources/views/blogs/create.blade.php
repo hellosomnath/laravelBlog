@@ -61,7 +61,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<label for="">Published on*</label>
-									<input type="text" class="datepicker" name="published_on" placeholder="Published on" value="{{ old('published_on') }}">
+									<input type="text" class="datepicker" name="published_on" placeholder="Published on" value="{{ old('published_on') ?? date('d-m-Y') }}">
 								</div>
 								<div class="col-md-6 top-search">
 									<label for="">Published</label>

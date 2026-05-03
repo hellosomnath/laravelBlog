@@ -10,6 +10,26 @@
 <div class="page-single">
 	<div class="container">
 		<div class="row">
+			<div class="co-md-12 header" style="margin-bottom: 20px;">
+			    <!-- top search form -->
+			    @if (isset($sort))
+			    <div class="top-search">
+			    	<select name="sort" onchange="window.location.href='/blogs?sort='+this.value;" style="width: 30%; border-right: 1px solid #020d18;">
+						<option value="sbpa" {{$sort == 'sbpa' ? 'selected' : ''}}>Published (ASC)</option>
+						<option value="sbpd" {{$sort == 'sbpd' ? 'selected' : ''}}>Published (DESC)</option>
+						<option value="sbva" {{$sort == 'sbva' ? 'selected' : ''}}>Views (ASC)</option>
+						<option value="sbvd" {{$sort == 'sbvd' ? 'selected' : ''}}>Views (DESC)</option>
+						<option value="sbaa" {{$sort == 'sbaa' ? 'selected' : ''}}>Author (ASC)</option>
+						<option value="sbad" {{$sort == 'sbad' ? 'selected' : ''}}>Author (DESC)</option>
+					</select>
+					<form action="{{ url('/blog-search') }}" class="inline-form" style="width: 100%;">
+						<input type="text" name="search" placeholder="Search blog">
+					</form>
+			    </div>
+			    @endif
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				@foreach ($blogs as $blog)
 				<div class="blog-item-style-1 blog-item-style-3">
@@ -38,12 +58,14 @@
 			</div>
 			<div class="col-md-3 col-sm-12 col-xs-12">
 				<div class="sidebar">
+					@if (!isset($sort))
 					<div class="sb-search sb-it">
 						<h4 class="sb-title">Search</h4>
-						<form action={{ url('/blog-search') }}>
+						<form action="{{ url('/blog-search') }}">
 							<input type="text" name="search" placeholder="Enter keywords">
 						</form>
 					</div>
+					@endif
 					<div class="sb-cate sb-it">
 						<h4 class="sb-title">Categories</h4>
 						<div class="top-search">

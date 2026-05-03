@@ -175,6 +175,19 @@ input.datepicker {
   max-width: 200px;
 }
 
+.publish {
+  right: 25px;
+  top: 10px;
+  display: flex;
+  position: absolute;
+  background: darkslateblue;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/*--------------------*/
+
 @media print {
   *,
   *:before,
@@ -5409,6 +5422,7 @@ ul {
   background-color: #071829;
   margin-bottom: 30px;
   overflow: hidden;
+  position: relative;
 }
 .blog-item-style-3 img {
   -webkit-transition: all 0.5s ease-out;
@@ -8063,7 +8077,7 @@ header .navbar-default .navbar-nav .dropdown.first.open a {
   color: #dcf836;
   background: none;
 }
-header .top-search {
+header .top-search, .header .top-search {
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
@@ -8075,7 +8089,7 @@ header .top-search {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.top-search select,
+.top-search select, .top-search input,
 header .top-search input {
   height: 46px;
   border: none;
