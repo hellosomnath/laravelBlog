@@ -23,6 +23,7 @@ Route::get('blog-search/', [BlogSearchController::class, 'searchByText']);
 Route::get('categories/', [CategoryController::class, 'index'])->middleware('auth');
 Route::post('/submit-category', [CategoryController::class, 'store'])->middleware('auth');
 Route::delete('/category/delete/{category}', [CategoryController::class, 'destroy'])->middleware('auth');
+Route::post('/add-category', [CategoryController::class, 'addCatAjax'])->middleware('auth');
 
 // authentication
 Route::post('signup', [AuthController::class, 'signup'])->middleware('guest');

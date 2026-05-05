@@ -186,6 +186,24 @@ input.datepicker {
   font-weight: bold;
 }
 
+div#modalNotify {
+    font-size: 15px;
+    font-family: monospace;
+    margin-bottom: 10px;
+    color: darkmagenta;
+}
+
+button#addCat {
+    display: inline-block;
+    /* float: right; */
+    background: darkorange;
+    color: white;
+    font-weight: bold;
+    height: 46px;
+    border: none;
+    padding: 0 15px;
+}
+
 /*--------------------*/
 
 @media print {

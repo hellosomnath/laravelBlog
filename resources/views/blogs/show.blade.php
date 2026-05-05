@@ -252,7 +252,7 @@
 	    		data: $("#replyCommentForm").serialize(),
 	    		success: function(res) {
 	    			if (res.errors) {
-	    				$("#modalNotify").html(res.errors);
+	    				$("#modalNotify").addClass('alert-info').html(res.errors);
 	    			} else {
 	    				$("#modalNotify").html(res.success);
 	    				window.location.href = res.url;

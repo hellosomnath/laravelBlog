@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -42,6 +43,25 @@ class CategoryController extends Controller
         } else {
             $category->delete();
             return back()->with('success', 'Category deleted successfully');
+        }
+        
+    }
+
+    public function addCatAjax(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'category_name' => 'required|unique:categories',
+        ],[
+            'category_name' => 'The category field is required',
+            'category_name.unique' => 'The category already exist'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()->all()]);
+        } else {
+            $category = new Category();
+            $category->category_name = $request->category_name;
+            $category->save();
+            return response()->json(['succes' => 'Category created successfully', 'category' => $category]);
         }
         
     }

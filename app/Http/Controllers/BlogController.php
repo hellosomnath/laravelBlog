@@ -54,7 +54,7 @@ class BlogController extends Controller
 
         $categories = Category::withCount('blogs')->get();
 
-        $blogs = Blog::query()->where('is_published', 1)->orderBy($sortBy, $sortType)->paginate(5);
+        $blogs = Blog::query()->where('is_published', 1)->orderBy($sortBy, $sortType)->orderBy('id', 'desc')->paginate(5);
         $latest_blog = Blog::query()->orderBy('published_on', 'desc')->limit(3)->get();
         $sort = $request->query('sort') ?? 'sbpd';
         return view('blogs.index', ['blogs' => $blogs,'categories' => $categories, 'latest_blog' => $latest_blog, 'sort' => $sort]);
