@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function home()
+    {
+        $popular_blogs = Blog::orderBy('total_views', 'desc')->limit(4)->get();
+        $latest_blog = Blog::orderBy('published_on', 'desc')->limit(4)->get();
+
+        return view('home', ['popular_blogs' => $popular_blogs, 'latest_blog' => $latest_blog]);
+    }
     public function myBlogs()
     {
         $userId = auth()->user()->id;

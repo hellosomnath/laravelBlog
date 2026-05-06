@@ -181,9 +181,17 @@ input.datepicker {
   display: flex;
   position: absolute;
   background: darkslateblue;
-  padding: 5px 10px;
+  color: white;
+  padding: 5px 15px;
   border-radius: 20px;
   font-weight: bold;
+}
+
+.publish:hover {
+  color: darkslateblue;
+  background: white;
+  border: 1px solid darkslateblue;
+  cursor: pointer;
 }
 
 div#modalNotify {
@@ -202,6 +210,10 @@ button#addCat {
     height: 46px;
     border: none;
     padding: 0 15px;
+}
+
+.text-white {
+  color: white !important;
 }
 
 /*--------------------*/

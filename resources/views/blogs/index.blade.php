@@ -47,6 +47,12 @@
 				</div>
 				@endforeach
 
+				@if (empty($blogs[0]))
+					<div class="blog-form">
+						<h3 class="text-white">No blogs found</h3>
+					</div>
+				@endif
+
 				{{-- pagination --}}
 				@if (isset($searchTerm))
 					{{$blogs->withQueryString()->links()}}

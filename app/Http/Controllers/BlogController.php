@@ -17,11 +17,13 @@ class BlogController extends Controller
     {
         switch ($request->query('sort')) {
             case 'sbpa':
+                $sort = 'sbpa';
                 $sortBy = 'published_on';
                 $sortType = 'asc';
                 break;
 
-            case 'sbpa':
+            case 'sbpd':
+                $sort='sbpd';
                 $sortBy = 'published_on';
                 $sortType = 'desc';
                 break;
@@ -29,26 +31,31 @@ class BlogController extends Controller
             case 'sbvd':
                 $sortBy = 'total_views';
                 $sortType = 'desc';
+                $sort = 'sbvd';
                 break;
 
             case 'sbva':
                 $sortBy = 'total_views';
                 $sortType = 'asc';
+                $sort = 'sbva';
                 break;
 
             case 'sbaa':
                 $sortBy = 'author';
                 $sortType = 'asc';
+                $sort = 'sbaa';
                 break;
 
             case 'sbad':
                 $sortBy = 'author';
                 $sortType = 'desc';
+                $sort = 'sbad';
                 break;
             
             default:
                 $sortBy = 'published_on';
                 $sortType = 'desc';
+                $sort = 'sbpd';
                 break;
         }
 
@@ -56,7 +63,7 @@ class BlogController extends Controller
 
         $blogs = Blog::query()->where('is_published', 1)->orderBy($sortBy, $sortType)->orderBy('id', 'desc')->paginate(5);
         $latest_blog = Blog::query()->orderBy('published_on', 'desc')->limit(3)->get();
-        $sort = $request->query('sort') ?? 'sbpd';
+        
         return view('blogs.index', ['blogs' => $blogs,'categories' => $categories, 'latest_blog' => $latest_blog, 'sort' => $sort]);
     }
 

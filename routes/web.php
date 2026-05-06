@@ -8,9 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('login');
+Route::get('/',[UserController::class, 'home'])->name('login');
 
 // blogs
 Route::resource('blogs', BlogController::class);
